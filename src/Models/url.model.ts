@@ -4,7 +4,7 @@ interface IUrl{
     shortID : string,
     redirectUrl : string,
      visitHistory: {
-    timestamp: Date;
+    timestamps: Date;
   }[];
 }
 
@@ -23,9 +23,9 @@ const URLSCHEMA = new mongoose.Schema<IUrl>({
     },
     visitHistory:[
         {
-            timeStamp :{
+            timestamps :{
                 type : Date,
-                Default : Date.now,
+                default : Date.now,
             } }]
 
 } , {

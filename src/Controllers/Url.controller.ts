@@ -1,6 +1,6 @@
 import { Request , Response } from "express";
 import { nanoid } from "nanoid";
-import URL from "../Models/Url.models.js";
+import URL from "../Models/url.model.ts";
 const handleUrlGeneration = async(req:Request , res:Response)=>{
 
     const shortId = nanoid(8);

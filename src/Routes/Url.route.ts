@@ -1,5 +1,6 @@
 import { Router } from "express";
-import {handleUrlGeneration} from "./Models/Url.models.ts";
+// import {handleUrlGeneration} from "./Models/ur.ts";
+import { handleUrlGeneration } from "../Controllers/Url.controller.ts";
 
 const route = Router();
 
