@@ -1,7 +1,8 @@
 import express from 'express';
 const app = express();
 import route from './Routes/Url.route.ts';
-import URL from './Models/url.model.js';
+import { Request , Response } from 'express';
+import URL from './Models/url.model.ts';
 import { dbConnection } from './Config/DbConnection.ts';
 
 dbConnection('mongodb://127.0.0.1:27017/URL_SHORTNER');
@@ -40,6 +41,23 @@ app.get("/:shortid", async (req, res) => {
   }
 
   res.redirect(entry.redirectUrl);
+});
+
+app.get("/getAnalytics/:shortID", async (req: Request, res: Response) => {
+  const { shortID } = req.params;
+
+  const result = await URL.findOne( {shortID} );
+
+  if (!result) {
+    return res.status(404).json({
+      message: "Short URL not found",
+    });
+  }
+
+  return res.json({
+    totalClicks: result.visitHistory.length,
+    analytics: result.visitHistory,
+  });
 });
 
 app.listen(PORT , ()=>{
