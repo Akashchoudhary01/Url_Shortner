@@ -14,7 +14,13 @@ const handleUrlGeneration = async(req:Request , res:Response)=>{
         visitHistory : []
 
     })
-    return res.json({id : shortId});
+    return res.render("home" , {
+        id : shortId
+    })
+    // return res.render("/" , {
+    //     id:shortId
+    // })
+    // return res.json({id : shortId});
 
 
 

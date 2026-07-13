@@ -1,6 +1,8 @@
 import express from 'express';
 const app = express();
 import route from './Routes/Url.route.ts';
+import StaticRoute from './Routes/Static.route.ts';
+import path  from 'path';
 import { Request , Response } from 'express';
 import URL from './Models/url.model.ts';
 import { dbConnection } from './Config/DbConnection.ts';
@@ -8,15 +10,17 @@ import { dbConnection } from './Config/DbConnection.ts';
 dbConnection('mongodb://127.0.0.1:27017/URL_SHORTNER');
 
 app.use(express.json());
+app.use(express.urlencoded({extended : false}));
+app.set("views" , path.resolve("./src/views"));
+app.set("view engine" , "ejs");
+
+
 
 const PORT = 6969;
 
-app.get("/" , (req , res)=>{
-
-    res.send("Hello Jai Shree Ram !")
-});
 
 app.use("/url" , route );
+app.use("/" , StaticRoute);
 app.get("/:shortid", async (req, res) => {
   const { shortid } = req.params;
 
@@ -59,6 +63,7 @@ app.get("/getAnalytics/:shortID", async (req: Request, res: Response) => {
     analytics: result.visitHistory,
   });
 });
+console.log(path.join(process.cwd(), "views"));
 
 app.listen(PORT , ()=>{
     console.log( `App is live at http://localhost:${PORT}`)
