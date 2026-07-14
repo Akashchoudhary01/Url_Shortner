@@ -1,6 +1,7 @@
 import express from 'express';
 const app = express();
 import route from './Routes/Url.route.ts';
+import userRoute from './Routes/User.route.ts';
 import StaticRoute from './Routes/Static.route.ts';
 import path  from 'path';
 import { Request , Response } from 'express';
@@ -20,6 +21,7 @@ const PORT = 6969;
 
 
 app.use("/url" , route );
+app.use("/user" , userRoute );
 app.use("/" , StaticRoute);
 app.get("/:shortid", async (req, res) => {
   const { shortid } = req.params;

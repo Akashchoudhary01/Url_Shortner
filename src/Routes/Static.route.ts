@@ -8,5 +8,8 @@ route.get("/" , async(req , res)=>{
         allUrl
     });
 });
+route.get("/signup" , async(req , res)=>{
+    return res.render("signup");
+});
 
 export default route;
