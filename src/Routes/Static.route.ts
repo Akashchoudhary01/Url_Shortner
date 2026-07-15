@@ -11,5 +11,8 @@ route.get("/" , async(req , res)=>{
 route.get("/signup" , async(req , res)=>{
     return res.render("signup");
 });
+route.get("/login" , async(req , res)=>{
+    return res.render("login");
+});
 
 export default route;

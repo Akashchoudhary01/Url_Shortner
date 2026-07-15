@@ -21,7 +21,8 @@
     "express": "^5.2.1",
     "mongoose": "^9.7.3",
     "nanoid": "^5.1.16",
-    "ts-node-dev": "^2.0.0"
+    "ts-node-dev": "^2.0.0",
+    "uuid": "^14.0.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.14",
