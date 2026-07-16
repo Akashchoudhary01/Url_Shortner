@@ -27,11 +27,14 @@
     <div>
         <% if (locals.id) { %>
             <p>`URL generated : http://localhost:6969/<%= id%>`</p>
-            <p ><a href="/">Back to home </a></p>
+            <p><a href="/">Back to home </a></p>
 
             <% } %>
-            <a href="/login">Login</a>
-            <a href="/signup">signup</a>
+                <a href="/login">Login</a>
+                <a href="/signup">signup</a>
+                <a href="/user/logout">
+                    <button>Logout</button>
+                </a>
                 <form action="/url" method="post">
                     <label for="url">Enter your Original URL</label>
                     <input type="text" name="url" id="url">

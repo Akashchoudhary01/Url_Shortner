@@ -1,8 +1,10 @@
 import mongoose, {Schema} from 'mongoose';
+import { ref } from 'process';
 
 interface IUrl{
     shortID : string,
     redirectUrl : string,
+    createdBy : any,
      visitHistory: {
     timestamps: Date;
   }[];
@@ -21,6 +23,10 @@ const URLSCHEMA = new mongoose.Schema<IUrl>({
         required : true,
 
     },
+    createdBy:{
+      type : mongoose.Schema.Types.ObjectId,
+      ref : "users",
+    },
     visitHistory:[
         {
             timestamps :{
@@ -28,7 +34,8 @@ const URLSCHEMA = new mongoose.Schema<IUrl>({
                 default : Date.now,
             } }]
 
-} , {
+} 
+, {
     timestamps : true
 })
 const URL = mongoose.model("URL" , URLSCHEMA);

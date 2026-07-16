@@ -9,12 +9,12 @@ const handleUrlGeneration = async(req:Request , res:Response)=>{
     if(!url){
         return res.status(400).json({error : "URL is Required"})
     }
-    URL.create({
-        shortID : shortId,
-        redirectUrl : url,
-        visitHistory : []
-
-    })
+ await URL.create({
+    shortID: shortId,
+    redirectUrl: url,
+    createdBy: req.user._id,
+    visitHistory: [],
+});
     return res.render("home" , {
         id : shortId
     })

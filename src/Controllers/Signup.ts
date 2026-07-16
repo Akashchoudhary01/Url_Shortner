@@ -1,4 +1,3 @@
-import { v4 } from "uuid";
 import User from "../Models/user.model.js";
 import { Request , Response } from "express";
 import { setUser } from "../service/auth.js";
@@ -16,23 +15,38 @@ const handleUserSignup = async(req:Request, res:Response)=>{
         })
         return res.render("home");
 }
-const handleUserLogin= async(req:Request, res:Response)=>{
-    const { email , password} = req.body;
+const handleUserLogin = async (req: Request, res: Response) => {
+    const { email, password } = req.body;
 
-    if(!email || !password){
-        return res.status(200).json("Every field is mendatory")
+    if (!email || !password) {
+        return res.status(400).json({
+            message: "All fields are mandatory",
+        });
     }
-      const user = await User.findOne({email});
-      const sessionId = v4();
-      setUser(sessionId , user);
-      res.cookie("uid" , sessionId);
-      if(!user){
-        return res.json(404).json("user not found")
-      }
-      return res.redirect("/");
+
+    const user = await User.findOne({ email, password });
+
+    if (!user) {
+        return res.status(401).json({
+            message: "Invalid email or password",
+        });
+    }
+
+    const token = setUser(user);
+
+    res.cookie("token", token);
+
+    return res.redirect("/");
+};
+const handleUserLogout= (req:Request , res:Response)=>{
+    // const token = setUser(user);
+    res.clearCookie("token");
+    return res.redirect("/")
+
 }
 
 export { 
     handleUserSignup,
-    handleUserLogin
+    handleUserLogin,
+    handleUserLogout
 }
