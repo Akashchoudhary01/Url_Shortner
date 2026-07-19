@@ -7,11 +7,21 @@
     <title>URL-SHORTNER</title>
     <style>
         body {
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f7fc;
+            font-family: 'Lucida Sans', Geneva, Verdana, sans-serif;
             display: flex;
-            background-color: aqua;
-            height: 100%;
             justify-content: center;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
         .url {
@@ -20,11 +30,75 @@
             white-space: nowrap;
             text-overflow: ellipsis;
         }
+
+        form {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #0077ff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005ed1;
+        }
+
+        a {
+            text-decoration: none;
+            color: #0077ff;
+            margin-right: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #0077ff;
+            color: white;
+            padding: 12px;
+        }
+
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
     </style>
 </head>
 
 <body>
-    <div>
+    <div class=" container">
         <% if (locals.id) { %>
             <p>`URL generated : http://localhost:6969/<%= id%>`</p>
             <p><a href="/">Back to home </a></p>
